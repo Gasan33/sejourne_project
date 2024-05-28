@@ -16,14 +16,12 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> items = [
-      'Item1',
-      'Item2',
-      'Item3',
-      'Item4',
-      'Item5',
-      'Item6',
-      'Item7',
-      'Item8',
+      TTexts.businessBayLabel,
+      TTexts.dubaiHillsLabel,
+      TTexts.dubaiMarinaLabel,
+      TTexts.laCoteLabel,
+      TTexts.downTownLabel,
+
     ];
     String? selectedValue;
     return TRoundedContainer(

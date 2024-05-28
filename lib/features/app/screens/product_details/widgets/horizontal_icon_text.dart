@@ -7,11 +7,17 @@ class HorizontalIconText extends StatelessWidget {
       {super.key,
       required this.icon,
       required this.title,
-       this.subTitle,  this.isSub=true});
+       this.subTitle,  this.isSub=true, this.titleTextStyle,this.subTitleTextStyle,  this.iconSize=TSizes.md,  this.maxLine=2, this.iconColor});
 
   final String icon, title;
   final String? subTitle;
   final bool isSub;
+  final TextStyle? titleTextStyle,subTitleTextStyle;
+  final double iconSize;
+  final int maxLine;
+  final Color? iconColor;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +28,24 @@ class HorizontalIconText extends StatelessWidget {
         children: [
           Image.asset(
            icon,
-            height: TSizes.md,
-            width: TSizes.md,
+            color: iconColor,
+            height: iconSize,
+            width: iconSize,
           ),
           const SizedBox(width: TSizes.xs,),
           Expanded(
             child:isSub? RichText(
-              maxLines: 2,
+              maxLines: maxLine ,
               text: TextSpan(
                 text: "$title : ",
-                style: Theme.of(context)
+                style:titleTextStyle ?? Theme.of(context)
                     .textTheme
                     .labelLarge!
                     .apply(color: TColors.darkerGrey),
                 children: <TextSpan>[
                  TextSpan(
                     text: subTitle,
-                    style: Theme.of(context)
+                    style:subTitleTextStyle ?? Theme.of(context)
                         .textTheme
                         .labelMedium!
                         .apply(color: TColors.darkerGrey),

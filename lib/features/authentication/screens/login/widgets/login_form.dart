@@ -88,7 +88,7 @@ class TLoginForm extends StatelessWidget {
               child: Center(
                   child: Text(
                 TTexts.signUpWith,
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.titleMedium,
               )),
             ),
 

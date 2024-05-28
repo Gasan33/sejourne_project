@@ -14,7 +14,7 @@ class TRoundedContainer extends StatelessWidget {
     this.backgroundColor = TColors.white,
     this.margin,
     this.showBorder = false,
-    this.borderColor = TColors.darkGrey,
+    this.borderColor = TColors.grey2,
     this.shadow = const BoxShadow(),
     this.gradient,
     this.isGradient = true,

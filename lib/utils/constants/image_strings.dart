@@ -87,6 +87,29 @@ class TImage{
 
   // -- Profile images
   static const String user="assets/images/profile/user.png";
+  static const String user1="assets/images/profile/pro.png";
+  static const String user2="assets/images/profile/pro1.png";
+  static const String user3="assets/images/profile/pro2.png";
+  static const String user4="assets/images/profile/pro3.png";
+  static const String user5="assets/images/profile/pro4.png";
+  static const String plus="assets/icons/profile_icons/plus.png";
+
+  // -- Profile Icons
+  static const String personal="assets/icons/profile_icons/personal.svg";
+  static const String preferences="assets/icons/profile_icons/preferences.svg";
+  static const String privacy="assets/icons/profile_icons/privacy.svg";
+  static const String payment="assets/icons/profile_icons/pyment.svg";
+  static const String security="assets/icons/profile_icons/security.svg";
+  static const String settings="assets/icons/profile_icons/settings.svg";
+
+  // -- Bookings Icons
+  static const String channel="assets/icons/bookings_icons/channel.png";
+  static const String checkIn="assets/icons/bookings_icons/checkIn.png";
+  static const String checkOut="assets/icons/bookings_icons/checkout.png";
+  static const String fee="assets/icons/bookings_icons/fee.png";
+  static const String nights="assets/icons/bookings_icons/nights.png";
+  static const String revenue="assets/icons/bookings_icons/revenue.png";
+
 
 
 

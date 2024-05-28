@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:sejourne_project/features/app/screens/messages/messages.dart';
+import 'package:sejourne_project/features/app/screens/myBooking/my_booking.dart';
+import 'package:sejourne_project/features/app/screens/wishlist/wishlist.dart';
 import 'package:sejourne_project/utils/constants/colors.dart';
 import 'package:sejourne_project/utils/constants/image_strings.dart';
 import 'package:sejourne_project/utils/constants/sizes.dart';
@@ -29,7 +32,6 @@ class NavigationMenu extends StatelessWidget {
                 topRight: Radius.circular(TSizes.cardRadiusLg),
               )),
           child: NavigationBar(
-
             selectedIndex: controller.selectedIndex.value,
             backgroundColor: Colors.transparent,
 elevation: 0,
@@ -102,9 +104,9 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     const HomeScreen(),
-    Container(),//const StoreScreen(),
-    Container(),//const FavouriteScreen(),
-    Container(),//const SettingsScreen(),
+   const WishListScreen(),
+     const MyBookingsScreen(),
+    const MessagesScreen(),
     const ProfileScreen(),
   ];
 }

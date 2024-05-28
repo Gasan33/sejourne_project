@@ -1,12 +1,19 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:sejourne_project/features/personalization/screens/profile/widgets/profile_menu.dart';
+import 'package:sejourne_project/common/styles/spacing_styles.dart';
+import 'package:sejourne_project/common/widgets/custom_shapes/containers/background_image_container.dart';
+import 'package:sejourne_project/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:sejourne_project/common/widgets/layouts/grid_layout.dart';
+import 'package:sejourne_project/features/app/screens/product_details/widgets/horizontal_icon_text.dart';
+import 'package:sejourne_project/features/personalization/screens/profile/widgets/icon_title.dart';
+import 'package:sejourne_project/features/personalization/screens/profile/widgets/profile_appbar.dart';
+import 'package:sejourne_project/features/personalization/screens/profile/widgets/profile_pic.dart';
+import 'package:sejourne_project/features/personalization/screens/profile/widgets/rating_widget.dart';
+import 'package:sejourne_project/utils/constants/colors.dart';
+import 'package:sejourne_project/utils/device/device_utility.dart';
 import 'package:sejourne_project/utils/helpers/helper_functions.dart';
-
-import '../../../../common/widgets/appbar/appbar.dart';
-import '../../../../common/widgets/images/circular_image.dart';
-import '../../../../common/widgets/texts/section_header.dart';
+import '../../../../common/styles/shadows.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../app/controllers/user/user_controller.dart';
@@ -17,132 +24,117 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(UserController());
+
+    List titles = [
+      "Personal",
+      "Preferences",
+      "Security",
+      "Payment",
+      "Privacy",
+      "Settings"
+    ];
+    List icons = [
+      TImage.personal,
+      TImage.preferences,
+      TImage.security,
+      TImage.payment,
+      TImage.privacy,
+      TImage.settings,
+    ];
     return Scaffold(
-      appBar: const TAppBar(
-        showBackArrow: false,
-        title: Text('Profile'),
-      ),
-
+      backgroundColor: Colors.transparent,
       /// Body
-      body: SingleChildScrollView(
-        child: Obx(
-          () => controller.profileLoading.value
-              ? const Center(
-                  child: CircularProgressIndicator(),
+      body: BackgroundImageContainer(
+        child: SingleChildScrollView(
+          child: Obx(
+            () => controller.profileLoading.value
+                ?  SizedBox(
+                  height: TDeviceUtils.getScreenHeight(),
+                  child: const Center(child: CircularProgressIndicator( )),
                 )
-              : Padding(
-                  padding: const EdgeInsets.all(TSizes.defaultSpace),
-                  child: Column(
-                    children: [
-                      /// Profile Picture
-                      SizedBox(
-                        width: double.infinity,
-                        child: Column(
-                          children: [
-                            const TCircularImage(
-                              image: TImage.user,
-                              width: 80,
-                              height: 80,
-                            ),
-                            TextButton(
-                                onPressed: () {},
-                                child: const Text('Change Profile Picture')),
-                          ],
+                : Padding(
+                    padding: TSpacingStyle.paddingWithAppBarHeight2,
+                    child: Column(
+                      children: [
+                        const ProfileAppBar(),
+        
+                        /// Profile Picture
+                        const SizedBox(
+                          height: TSizes.imageThumbSize,
                         ),
-                      ),
-
-                      /// -- Details
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems / 2,
-                      ),
-                      const Divider(),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-
-                      /// -- Heading Profile Info
-
-                      const TSectionHeading(
-                        title: 'Profile Information',
-                        showActionButton: false,
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      TProfileMenu(
-                        title: 'Name',
-
-                        value: controller.user.name,
-                        onPressed: () {}, // => Get.to(()=> const ChangeName()),
-                      ),
-                      TProfileMenu(
-                        title: 'Username',
-                        value: controller.user.name,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-
-                      const Divider(),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-
-                      /// -- Heading Personal Info
-
-                      const TSectionHeading(
-                        title: 'Personal Information',
-                        showActionButton: false,
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-
-                      TProfileMenu(
-                        title: 'User ID',
-                        icon: Iconsax.copy,
-                        value: controller.user.id.toString(),
-                        onPressed: () {},
-                      ),
-                      TProfileMenu(
-                        title: 'E-mail',
-                        value: controller.user.email,
-                        onPressed: () {},
-                      ),
-                      TProfileMenu(
-                        title: 'Phone Number',
-                        value: "+971*******",
-                        onPressed: () {},
-                      ),
-                      TProfileMenu(
-                        title: 'Gender',
-                        value: 'Male',
-                        onPressed: () {},
-                      ),
-                      TProfileMenu(
-                        title: 'Date of Birth',
-                        value: '1 Feb, 1998',
-                        onPressed: () {},
-                      ),
-                      const Divider(),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                            onPressed: ()=>THelperFunctions.showLogoutAlert(), child: const Text("Logout")),
-                      ),
-
-                      const SizedBox(
-                        height: TSizes.appBarHeight,
-                      ),
-                    ],
+        
+                        SizedBox(
+                          height: 260,
+                          child: Stack(children: [
+                             Align(
+                              alignment: Alignment.bottomCenter,
+                              child: TRoundedContainer(
+                                height: 180,
+                                width: double.infinity,
+        
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text("Catalin Pustai",style: Theme.of(context).textTheme.bodyLarge!.apply(color: TColors.white),),
+                                    SizedBox(
+                                      width: TDeviceUtils.getScreenWidth(context)*0.3,
+                                        child: HorizontalIconText(icon: TImage.locationIcon,iconColor: TColors.white, title: "Internet City, Dubai.",titleTextStyle: Theme.of(context).textTheme.labelSmall!.apply(color: TColors.white,),)),
+                                    const TRatingWidget(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                                //top: 20,
+                                left: TDeviceUtils.getScreenWidth(context) / 3,
+                                child: DottedBorder(
+                                    borderType: BorderType.Circle,
+                                    color: TColors.primary,
+                                    dashPattern: [4, 4],
+                                    strokeWidth: 4,
+                                    padding: const EdgeInsets.all(8),
+                                    borderPadding: const EdgeInsets.all(4),
+                                    child: const ProfilePic(
+                                    ))),
+                          ]),
+                        ),
+                        const SizedBox(
+                          height: TSizes.spaceBtwSections,
+                        ),
+        
+                        TGridLayout(
+                            itemCount: 6,
+                            mainAxisExtent: 120,
+                            itemBuilder: (_, index) => TRoundedContainer(
+                                  backgroundColor: TColors.white,
+                                  showBorder: true,
+                                  isGradient: false,
+                                  padding: EdgeInsets.zero,
+                                  shadow: TShadowStyle.containerShadow,
+                                  child: IconTitle(
+                                    title: titles[index],
+                                    icon: icons[index],
+                                  ),
+                                )),
+                        const SizedBox(
+                          height: TSizes.spaceBtwSections,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                              onPressed: () =>
+                                  THelperFunctions.showLogoutAlert(),
+                              child: const Text("Logout")),
+                        ),
+        
+                        const SizedBox(
+                          height: TSizes.appBarHeight*2,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+          ),
         ),
       ),
     );

@@ -97,7 +97,7 @@ class IconTitleSubTitle extends StatelessWidget {
             style: const TextStyle(fontSize: 6,color: TColors.darkerGrey),
           ),
           Text(
-            subTitle,
+            subTitle ?? "",
             style: Theme.of(context).textTheme.displaySmall,
           ),
         ],

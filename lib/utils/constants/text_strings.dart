@@ -28,7 +28,7 @@ class TTexts{
   // -- Home
   static const String homeLabel="Home";
   static const String wishListLabel="Wishlist";
-  static const String myBookingsLabel="My Bookings";
+  static const String myBookingsLabel="Bookings";
   static const String messagesLabel="Messages";
   static const String profileLabel="Profile";
   static const String locationLabel="Location";
